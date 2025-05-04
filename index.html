@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>焼き鳥うちわ（UCHIWA）多言語メニュー</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #fdf8f1;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #222;
+      color: #ffd700;
+      text-align: center;
+      padding: 1rem;
+    }
+    nav {
+      text-align: center;
+      margin: 1rem;
+    }
+    nav button {
+      margin: 0 0.5rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+    }
+    .menu {
+      padding: 1rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    .menu h2 {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 0.2rem;
+    }
+    .item {
+      margin: 0.5rem 0;
+    }
+    .price {
+      float: right;
+    }
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>焼き鳥うちわ（UCHIWA）</h1>
+    <p>Yakitori Izakaya - Multilingual Menu</p>
+  </header>
+  <nav>
+    <button onclick="switchLang('ja')">日本語</button>
+    <button onclick="switchLang('en')">English</button>
+    <button onclick="switchLang('zh')">中文</button>
+    <button onclick="switchLang('ko')">한국어</button>
+  </nav>
+  <div class="menu" id="menu">
+  </div>
+  <footer>
+    © 2025 焼き鳥うちわ UCHIWA
+  </footer>
+
+  <script>
+    const menus = {
+      ja: [
+        { title: 'おまかせ串10本コース', items: [{ name: 'キャベツ・大根鬼おろし・鶏ガラスープ付き', price: '¥1,280' }] },
+        { title: '鶏刺', items: [
+          { name: '赤鶏ももタタキ', price: '¥880' },
+          { name: '赤鶏むねタタキ', price: '¥880' }
+        ] },
+        { title: '御飲物', items: [
+          { name: 'サッポロ黒ラベル（生）', price: '¥550' },
+          { name: 'ウイスキー（角・白州・知多）', price: '¥650〜' }
+        ] }
+      ],
+      en: [
+        { title: '10 Skewer Chef’s Selection', items: [{ name: 'With cabbage, grated daikon & chicken soup', price: '¥1,280' }] },
+        { title: 'Chicken Sashimi', items: [
+          { name: 'Seared Chicken Thigh', price: '¥880' },
+          { name: 'Seared Chicken Breast', price: '¥880' }
+        ] },
+        { title: 'Drinks', items: [
+          { name: 'Sapporo Draft Beer', price: '¥550' },
+          { name: 'Whiskey (Kaku, Hakushu, Chita)', price: 'From ¥650' }
+        ] }
+      ],
+      zh: [
+        { title: '主厨推荐10串', items: [{ name: '附卷心菜、白萝卜泥、鸡骨汤', price: '¥1,280' }] },
+        { title: '鸡肉刺身', items: [
+          { name: '炙烧鸡腿肉', price: '¥880' },
+          { name: '炙烧鸡胸肉', price: '¥880' }
+        ] },
+        { title: '饮品', items: [
+          { name: '札幌生啤', price: '¥550' },
+          { name: '威士忌（角瓶、白州、知多）', price: '¥650起' }
+        ] }
+      ],
+      ko: [
+        { title: '셰프 추천 꼬치 10종 세트', items: [{ name: '양배추, 무즙, 닭육수 포함', price: '¥1,280' }] },
+        { title: '닭 육회', items: [
+          { name: '닭 다리 타타키', price: '¥880' },
+          { name: '닭 가슴살 타타키', price: '¥880' }
+        ] },
+        { title: '음료', items: [
+          { name: '삿포로 생맥주', price: '¥550' },
+          { name: '위스키 (카쿠, 하쿠슈, 치타)', price: '¥650부터' }
+        ] }
+      ]
+    };
+
+    function switchLang(lang) {
+      const menu = document.getElementById('menu');
+      menu.innerHTML = '';
+      menus[lang].forEach(section => {
+        const sectionEl = document.createElement('div');
+        const title = document.createElement('h2');
+        title.textContent = section.title;
+        sectionEl.appendChild(title);
+        section.items.forEach(item => {
+          const itemEl = document.createElement('div');
+          itemEl.className = 'item';
+          itemEl.innerHTML = `${item.name} <span class="price">${item.price}</span>`;
+          sectionEl.appendChild(itemEl);
+        });
+        menu.appendChild(sectionEl);
+      });
+    }
+
+    switchLang('ja');
+  </script>
+</body>
+</html>
